@@ -14,6 +14,8 @@ class User{
 		echo "\n user {$this -> login} was deleted";
 	}
 
+
+
 	public function showInfo() {
 		echo "<hr>";
 		echo "my name is: " 		.	$this->name . $this->newString();
@@ -26,21 +28,8 @@ class User{
 	}
 }
 
-/**
-* 
-*/
-class SuperUser extends User{
-	public $role;
-	function __construct($name, $login, $password, $role)
-	{
-		parent::__construct($name, $login, $password);
-		$this -> role = $role;
-	}
-	
-	public function showInfo() {
-		parent::showInfo();
-		echo "my role is: " . $this->role . $this->newString();
-	}
+function __autoload($class){
+	include $class.'.class.php';
 }
 
 $user1 = new User("John", "John_login", "John_password");
@@ -54,5 +43,6 @@ $user3 -> showInfo();
 
 $user4 = new SuperUser("Admin","su","su_password","admin");
 $user4-> showInfo();
+print_r($user4->getInfo());
 
 
